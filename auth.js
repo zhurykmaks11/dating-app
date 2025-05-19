@@ -1,13 +1,12 @@
-console.log('AUTH FILE LOADED');
-
 const AUTH_KEY = 'friendFinderUser';
 
 export function checkAuth() {
-    return localStorage.getItem(AUTH_KEY);
+    return localStorage.getItem(AUTH_KEY) !== null;
 }
 
-export function login(username) {
-    localStorage.setItem(AUTH_KEY, username);
+export function login(username, password) {
+    const userData = { username, password };
+    localStorage.setItem(AUTH_KEY,JSON.stringify(userData));
 }
 
 export function logout() {
@@ -29,8 +28,9 @@ export function bindAuthEvents(onLogin, onLogout) {
     form.addEventListener('submit', e => {
         e.preventDefault();
         const username = document.getElementById('username').value.trim();
-        if (username) {
-            login(username);
+        const password = document.getElementById('password').value.trim();
+        if (username && password) {
+            login(username,password);
             hideAuthForm();
             if (typeof onLogin === 'function') onLogin();
         }

@@ -3,7 +3,7 @@ import {
     checkAuth,
     renderAuthForm,
     hideAuthForm,
-    bindAuthEvents
+    bindAuthEvents,
 } from './auth.js';
 import {
     debounce,
@@ -33,7 +33,7 @@ function loadUsers() {
             allUsers = data.results;
         })
         .catch(() => {
-            document.getElementById('user-list').innerHTML = '<p>Помилка завантаження користувачів 😢</p>';
+            document.getElementById('user-list').innerHTML = '<p>Помилка завантаження користувачів </p>';
         });
 }
 
